@@ -1,28 +1,37 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Home, Login, Public } from "./pages/public/index";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Routes, Route } from "react-router-dom";
+import path from "./utils/path";
 
 function App() {
-
-  const [work, setWork] = useState('')
-
-  return(
-    <div className="flex gap-8 items-center justify-center border  border-red-500 h-screen">
-      <input 
-        type="text" 
-        className="outline-none border border-blue-600 px-4 py-2 w-[400px] rounded-md"
-        value={work}
-        onChange={e => setWork(e.target.value)}
-        />
-
-      <button
-        type="button"
-        className="outline-none px-4 py-2 bg-blue-500 rounded-md text-white">
-          Add
-      </button>
-
-
-    </div>
+  return (
+    <>
+      <div className="">
+        <Routes>
+          <Route path={path.PUBLIC} element={<Public />}>
+            <Route path={path.HOME} element={<Home />} />
+            <Route path={path.LOGIN} element={<Login />} />
+          </Route>
+        </Routes>
+      </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+    </>
   );
-  
 }
 
 export default App;
